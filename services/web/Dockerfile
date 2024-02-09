@@ -37,6 +37,8 @@ ENV CYPRESS_INSTALL_BINARY=0
 COPY tsconfig.backend.json /overleaf/
 RUN cd /overleaf \
  && npm install \
+ && mkdir /overleaf/services/web/node_modules/.cache \
+ && chmod -R 777 /overleaf/services/web/node_modules \
  && npm run --workspaces --if-present types:build
 
 # the web image with only production dependencies but no webpack production build, for development
