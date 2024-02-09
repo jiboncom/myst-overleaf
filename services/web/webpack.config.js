@@ -118,6 +118,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js)$/,
+        include: /node_modules\/(myst-to-react|mystmd|myst-parser|myst-transforms|myst-frontmatter|myst-theme|@myst-theme)/,
+        use: {
+          loader: 'babel-loader'
+        },
+        resolve: {
+          fullySpecified: false,
+        }
+      },
+      {
         // Pass application JS/TS files through babel-loader,
         // transpiling to targets defined in browserslist
         test: /\.([jt]sx?|[cm]js)$/,

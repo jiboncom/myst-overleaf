@@ -11,6 +11,8 @@ import CompileTimeWarning from './compile-time-warning'
 import CompileTimeoutMessages from './compile-timeout-messages'
 import { PdfPreviewProvider } from './pdf-preview-provider'
 
+import MystRender from '../../myst-previewer/myst-render'
+
 function PdfPreviewPane() {
   const { pdfUrl, showNewCompileTimeoutUI } = useCompileContext()
   const classes = classNames('pdf', 'full-size', {
@@ -20,6 +22,7 @@ function PdfPreviewPane() {
     <div className={classes}>
       <PdfPreviewProvider>
         <PdfHybridPreviewToolbar />
+        <div style={{overflowY: 'scroll', 'height': '100%'}}><MystRender /></div>
         <PdfPreviewMessages>
           {showNewCompileTimeoutUI ? (
             <CompileTimeoutMessages />
@@ -27,13 +30,13 @@ function PdfPreviewPane() {
             <CompileTimeWarning />
           )}
         </PdfPreviewMessages>
-        <Suspense fallback={<FullSizeLoadingSpinner delay={500} />}>
+        {/*<Suspense fallback={<FullSizeLoadingSpinner delay={500} />}>
           <div className="pdf-viewer">
             <PdfViewer />
             <FasterCompilesFeedback />
           </div>
         </Suspense>
-        <PdfLogsViewer />
+        <PdfLogsViewer /> */ null}
       </PdfPreviewProvider>
     </div>
   )
